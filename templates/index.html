@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gap Compression Game</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Welcome to the Gap Compression Game!</h1>
+    <p>Select an option:</p>
+    <form id="game-form">
+      <select name="choice">
+        <option value="1">Establish Our Value + CLOQC</option>
+        <option value="2">Refuse to Make Offer + Ask what prevents flexibility</option>
+        <option value="3">Make a Stair Step Offer</option>
+        <option value="4">Make a SWAG Offer</option>
+        <option value="5">Confirm our # AND Ask to lower their #</option>
+        <option value="6">Increase a little bit our number AND Ask to counter close to our #</option>
+        <option value="7">Confirm with counterpart that they want to see a # (Only after they ask you to give a number)</option>
+        <option value="8">Ask to lower</option>
+        <option value="9">Leave the Store</option>
+        <option value="10">FOMO Statement (Are you telling me if you don’t get x, You'll keep it? You dont want to sell this today?)</option>
+    </select>
+    <button type="submit">Submit</button>
+    </form>
+    <div id="response"></div>
+    
+
+    <script>
+        $('#game-form').on('submit', function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: '/play',
+                method: 'POST',
+                data: $(this).serialize(),
+                success: function (data) {
+                    $('#response').text(data.response);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
